@@ -16,6 +16,16 @@ function authenticateToken(req, res, next) {
   });
 }
 
+router.get('/', authenticateToken, async (req, res) => {
+    try {
+        // Assuming the user ID is stored in req.userId after authentication
+        const expenses = await Expense.find({ user: req.userId });
+        res.json(expenses);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 router.post('/', authenticateToken, async (req, res) => {
   try {
     // Assume `req.userId` is obtained from the authenticated user

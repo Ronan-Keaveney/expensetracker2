@@ -12,21 +12,6 @@ export class ExpenseServiceService {
 
   constructor(private http: HttpClient, private authService : AuthService) {}
 
-  // private getHttpOptions() {
-  //   const token = this.authService.getToken();
-  //   return {
-  //     headers: new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${token}`
-  //     })
-  //   };
-  // }
-  
-  // addExpense(expense: Expense): Observable<Expense> {
-  //   return this.http.post<Expense>(this.apiUrl, expense, this.getHttpOptions());
-  // }
-  // Add other methods as needed (get, update, delete, etc.)
-
   addExpense(expense: Expense): Observable<Expense> {
     const token = this.getToken(); // Retrieve the token from storage
 
@@ -35,6 +20,13 @@ export class ExpenseServiceService {
     });
 
     return this.http.post<Expense>(this.apiUrl, expense, { headers });
+  }
+
+  getExpenses(): Observable<Expense[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    });
+    return this.http.get<Expense[]>(this.apiUrl, { headers });
   }
 
   // Method to retrieve the token (adjust based on how you store the token)

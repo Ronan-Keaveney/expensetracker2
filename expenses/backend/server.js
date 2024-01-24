@@ -16,9 +16,11 @@ require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 const usersRouter = require('./routes/users');
 const expensesRouter = require('./routes/expenses');
+const categoriesRouter = require('./routes/categories')
 app.use(cors(corsOptions));
 app.use('/api/users', usersRouter);
 app.use('/api/expenses', expensesRouter);
+app.use('/api/categories', categoriesRouter);
 
 app.use(express.json()); // for parsing application/json
 

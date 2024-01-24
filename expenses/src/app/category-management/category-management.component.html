@@ -1,1 +1,17 @@
 <app-navbar></app-navbar>
+<div class="container">
+    <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+      <div class="form-group">
+        <label for="name">Category Name:</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!categoryForm.valid">Add Category</button>
+    </form>
+  
+    <h2>Existing Categories</h2>
+    <ul *ngIf="categories.length > 0">
+      <li *ngFor="let category of categories">{{ category.name }}</li>
+    </ul>
+    <p *ngIf="categories.length === 0">No categories added yet.</p>
+  </div>
+  

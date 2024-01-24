@@ -1,1 +1,14 @@
 <app-navbar></app-navbar>
+<div class="expense-list-container">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let expense of expenses">
+        <div class="expense-item">
+          <div>Date: {{ expense.date | date }}</div>
+          <div>Category: {{ expense.category }}</div>
+          <div>Amount: {{ expense.amount | currency }}</div>
+          <div>Description: {{ expense.description }}</div>
+          <!-- Add buttons for editing and deleting expenses -->
+        </div>
+      </li>
+    </ul>
+  </div>
