@@ -6,16 +6,17 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link" routerLink="/home">Home</a>
-        <a class="nav-link" routerLink="/dashboard">Dashboard</a>
-        <a class="nav-link" routerLink="/add-expense">Add Expense</a>
-        <a class="nav-link" routerLink="/expense-list">Expense List</a>
-        <a class="nav-link" routerLink="/expense-summary">Expense Summary</a>
-        <a class="nav-link" routerLink="/category-management">Category Management</a>
-        <a class="nav-link" routerLink="/budget-setting">Budget Setting</a>
-        <a class="nav-link" routerLink="/profile">Profile</a>
-        <a class="nav-link" routerLink="/settings">Settings</a>
-        <a class="nav-link" routerLink="/login">Login</a>
-        <a class="nav-link" routerLink="/register">Register</a>
+        <a *ngIf="authService.isAuthenticated()" class="nav-link" routerLink="/dashboard">Dashboard</a>
+        <a *ngIf="authService.isAuthenticated()" class="nav-link" routerLink="/add-expense">Add Expense</a>
+        <a *ngIf="authService.isAuthenticated()" class="nav-link" routerLink="/expense-list">Expense List</a>
+        <a *ngIf="authService.isAuthenticated()" class="nav-link" routerLink="/expense-summary">Expense Summary</a>
+        <a *ngIf="authService.isAuthenticated()" class="nav-link" routerLink="/category-management">Category Management</a>
+        <a *ngIf="authService.isAuthenticated()" class="nav-link" routerLink="/budget-setting">Budget Setting</a>
+        <a *ngIf="authService.isAuthenticated()" class="nav-link" routerLink="/profile">Profile</a>
+        <a *ngIf="authService.isAuthenticated()" class="nav-link" routerLink="/settings">Settings</a>
+        <a *ngIf="!authService.isAuthenticated()" class="nav-link" routerLink="/login">Login</a>
+        <a *ngIf="!authService.isAuthenticated()" class="nav-link" routerLink="/register">Register</a>
+        <a *ngIf="authService.isAuthenticated()" class="nav-link" (click)="onLogout()">Logout</a>
       </div>
     </div>
   </nav>
