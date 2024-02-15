@@ -8,10 +8,17 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(public authService: AuthService, private router: Router) {}
+  isRonan: boolean = false;
+  constructor(public authService: AuthService, private router: Router) {
+    this.checkIfRonan();
+  }
 
     onLogout() {
       this.authService.logout();
       this.router.navigate(['/login']); // Redirect to the login page or home page
+    }
+
+    private checkIfRonan(): void {
+      const user = this.authService.
     }
 }

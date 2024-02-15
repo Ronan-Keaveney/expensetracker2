@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ExpenseServiceService } from '../expense-service.service';
+import { CategoryServiceService } from '../category-service.service';
 import { Expense } from '../models/expense.model';
+import { Category } from '../models/category.model';
 
 
 @Component({
@@ -17,7 +19,26 @@ export class AddExpenseComponent {
     description: ['']
   });
 
-  constructor(private fb: FormBuilder, private expenseService: ExpenseServiceService) {}
+  categories: Category[] = [];
+
+  constructor(
+    private fb: FormBuilder,
+    private expenseService: ExpenseServiceService,
+    private categoryService: CategoryServiceService
+  ) {}
+
+  ngOnInit() {
+    this.fetchCategories();
+  }
+
+  fetchCategories() {
+    this.categoryService.getCategories().subscribe(
+      (categories) => {
+        this.categories = categories; // Store fetched categories
+      },
+      (error) => console.error('Error fetching categories:', error)
+    );
+  }
 
   onSubmit() {
     if (this.expenseForm.valid) {
