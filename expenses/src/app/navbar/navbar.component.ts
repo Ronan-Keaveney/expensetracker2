@@ -19,6 +19,6 @@ export class NavbarComponent {
     }
 
     private checkIfRonan(): void {
-      const user = this.authService.
+      const user = this.authService.isAuthenticated()
     }
 }
