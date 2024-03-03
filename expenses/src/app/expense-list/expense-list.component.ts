@@ -27,5 +27,21 @@ export class ExpenseListComponent implements OnInit {
     );
   }
 
+  deleteExpense(expenseId: string | undefined, index: number): void {
+    if (!expenseId) {
+      console.error('Expense ID is undefined');
+      return;
+    }
+    this.expenseService.deleteExpense(expenseId).subscribe({
+      next: () => {
+        this.expenses.splice(index, 1); // Remove the expense from the list
+        console.log('Expense deleted successfully');
+      },
+      error: (error) => {
+        console.error('Error deleting expense', error);
+      }
+    });
+  }
+
   // You can add methods for pagination, filtering, etc., here
 }

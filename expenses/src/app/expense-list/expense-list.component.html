@@ -1,13 +1,13 @@
 <app-navbar></app-navbar>
 <div class="expense-list-container">
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let expense of expenses">
+      <li class="list-group-item" *ngFor="let expense of expenses; let i = index">
         <div class="expense-item">
           <div>Date: {{ expense.date | date }}</div>
           <div>Category: {{ expense.category }}</div>
           <div>Amount: {{ expense.amount | currency }}</div>
           <div>Description: {{ expense.description }}</div>
-          <!-- Add buttons for editing and deleting expenses -->
+          <button type="button" class="btn btn-danger" *ngIf="expense._id" (click)="deleteExpense(expense._id, i)">Delete</button>
         </div>
       </li>
     </ul>

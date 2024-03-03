@@ -1,1 +1,10 @@
 <app-navbar></app-navbar>
+<div style="display: block">
+    <canvas baseChart
+      [data]="pieChartData"
+      [type]="pieChartType"
+      [options]="pieChartOptions"
+      [labels]="pieChartLabels">
+    </canvas>
+  </div>
+  

@@ -42,4 +42,17 @@ router.post('/', authenticateToken, async (req, res) => {
   }
 });
 
+
+router.delete('/:id', authenticateToken, async (req, res) => {
+  try {
+      // Find the expense by ID and user ID to ensure ownership
+      const expense = await Expense.findOneAndDelete({ _id: req.params.id, user: req.userId });
+      if (!expense) return res.status(404).send('No expense found with the given ID for the current user.');
+      res.status(200).json('Expense deleted successfully');
+  } catch (err) {
+      res.status(500).json({ message: err.message });
+  }
+});
+
+
 module.exports = router;
