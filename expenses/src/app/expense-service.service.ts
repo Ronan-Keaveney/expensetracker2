@@ -36,6 +36,14 @@ export class ExpenseServiceService {
     return this.http.delete(`${this.apiUrl}/${expenseId}`, { headers });
   }
 
+  updateExpense(expenseId: string, expenseData: Expense): Observable<Expense> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.getToken()}`
+    });
+    return this.http.put<Expense>(`${this.apiUrl}/${expenseId}`, expenseData, { headers });
+  }
+  
+
   // Method to retrieve the token (adjust based on how you store the token)
   private getToken(): string | null {
     return localStorage.getItem('authToken'); // Replace 'authToken' with your token key

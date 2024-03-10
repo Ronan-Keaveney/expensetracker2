@@ -53,6 +53,7 @@ export class AddExpenseComponent {
       this.expenseService.addExpense(newExpense).subscribe(
         response => {
           console.log('Expense added:', response);
+          this.expenseForm.reset();
         },
         error => {
           console.error('Error adding expense:', error);

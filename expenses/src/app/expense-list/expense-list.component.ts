@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseServiceService } from '../expense-service.service';
 import { Expense } from '../models/expense.model';
+import { EditExpenseComponent } from '../edit-expense/edit-expense.component';
 
 @Component({
   selector: 'app-expense-list',
@@ -10,7 +11,7 @@ import { Expense } from '../models/expense.model';
 export class ExpenseListComponent implements OnInit {
   expenses: Expense[] = [];
 
-  constructor(private expenseService: ExpenseServiceService) { }
+  constructor(private expenseService: ExpenseServiceService, private editExpenseComponent: EditExpenseComponent) { }
 
   ngOnInit(): void {
     this.fetchExpenses();
@@ -42,6 +43,13 @@ export class ExpenseListComponent implements OnInit {
       }
     });
   }
+
+  // In your ExpenseListComponent
+
+openEditModal(expense: Expense): void {
+  this.editExpenseComponent.openModal(expense);
+}
+
 
   // You can add methods for pagination, filtering, etc., here
 }

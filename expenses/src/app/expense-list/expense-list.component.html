@@ -8,6 +8,7 @@
           <div>Amount: {{ expense.amount | currency }}</div>
           <div>Description: {{ expense.description }}</div>
           <button type="button" class="btn btn-danger" *ngIf="expense._id" (click)="deleteExpense(expense._id, i)">Delete</button>
+          <button type="button" class="btn btn-primary" (click)="openEditModal(expense)">Edit</button>
         </div>
       </li>
     </ul>

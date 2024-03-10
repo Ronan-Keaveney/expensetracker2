@@ -21,6 +21,7 @@ export class RegisterComponent {
       this.authService.register(this.registerForm.value).subscribe(
         response => {
           console.log('User registered', response);
+          this.registerForm.reset();
         },
         error => {
           console.error('Registration error', error);

@@ -1,5 +1,5 @@
 export interface Expense {
-    _id?: string; // Optional for new entries
+    _id: string; // Optional for new entries
     date: Date;
     category: string;
     amount: number;
